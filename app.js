@@ -67,6 +67,11 @@ app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
   failureRedirect: '/login'
 }));
 
+app.get('/logout', function (req, res) {
+	req.session.destroy();
+	res.redirect('/');
+});
+
 app.use(function (req, res, next) {
 	res.locals.user = req.user;
 	next();
